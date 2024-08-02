@@ -1,13 +1,17 @@
 import sys
 import json
-from PyQt5.QtWidgets import QApplication, QMainWindow
-from PyQt5.QtWebEngineWidgets import QWebEngineView
+import os
+import mimetypes
+from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog
+from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineDownloadItem
 from PyQt5.QtCore import QUrl, QTimer
 from PyQt5.QtGui import QIcon
 from shortcuts import Shortcuts
 from windows_theme_manager import get_windows_theme, apply_theme, monitor_theme_changes
 from popup_url import UrlPopup
 import qdarktheme
+
+DEFAULT_DOWNLOAD_PATH = os.path.expanduser("~\Downloads")
 
 class Browser(QMainWindow):
     def __init__(self):
@@ -20,6 +24,8 @@ class Browser(QMainWindow):
         self.browser.setUrl(QUrl(self.url))
 
         self.browser.titleChanged.connect(self.update_title)
+
+        self.browser.page().profile().downloadRequested.connect(self.handle_download)
 
         self.setCentralWidget(self.browser)
         self.showMaximized()
@@ -57,6 +63,24 @@ class Browser(QMainWindow):
         self.timer.stop()
         self.update_title()
 
+    def handle_download(self, download):
+        suggested_file_name = download.suggestedFileName()
+        default_file_path = os.path.join(DEFAULT_DOWNLOAD_PATH, suggested_file_name)
+        file_path, _ = QFileDialog.getSaveFileName(self, 'Save File', default_file_path)
+
+        if file_path:
+            if not os.path.splitext(file_path)[1]: 
+                mime_type = download.mimeType()
+                extension = mimetypes.guess_extension(mime_type)
+                if extension:
+                    file_path += extension
+                else:
+                    file_path += '.download'
+
+            download.setPath(file_path)
+            download.accept()
+        else:
+            download.cancel()
 def main():
     app = QApplication(sys.argv)
     window = Browser()

@@ -27,6 +27,8 @@ class UrlPopup(QDialog):
         layout.addWidget(self.url_input)
         layout.addWidget(self.save_button)
         self.setLayout(layout)
+
+        self.center_on_browser()
         
         self.load_current_url()
 
@@ -55,3 +57,22 @@ class UrlPopup(QDialog):
         self.browser.setUrl(QUrl(new_url))
         
         self.accept()
+
+    def center_on_browser(self):
+        """Centre la boîte de dialogue sur la fenêtre du navigateur."""
+        if self.browser:
+            # Obtenez les dimensions de la fenêtre principale
+            main_window_rect = self.browser.parent().geometry()
+            main_window_center = main_window_rect.center()
+
+            # Obtenez les dimensions de la boîte de dialogue
+            dialog_rect = self.geometry()
+            dialog_width = dialog_rect.width()
+            dialog_height = dialog_rect.height()
+
+            # Calculez la position de la boîte de dialogue
+            x = main_window_center.x() - dialog_width // 2
+            y = main_window_center.y() - dialog_height // 2
+
+            # Définissez la nouvelle position de la boîte de dialogue
+            self.move(x, y)
