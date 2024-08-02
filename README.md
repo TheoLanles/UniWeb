@@ -20,4 +20,9 @@
 | `ctrl + ,` | Opens the **settings** popup |
 | `<--` | Is used to navigate to the **previous** page |
 | `-->` | Is used to navigate to the **next** page |
+| `ctrl + +` | **Zoom** in on the web page |
+| `ctrl + -` | **Unzoom** on the web page |
+| `ctrl + f` | **Find** a word on a page |
+| `Ctrl + Shift + m` | **Mute** and **unmute** audio on the page |
+| `Ctrl + Shift + r` | **Clear** page **cache and cookies** |
 
