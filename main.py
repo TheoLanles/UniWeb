@@ -5,7 +5,7 @@ from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtCore import QUrl, QTimer
 from PyQt5.QtGui import QIcon
 from shortcuts import Shortcuts
-from windows_theme_manager import dark_title_bar, light_title_bar, get_windows_theme, apply_theme
+from windows_theme_manager import get_windows_theme, apply_theme, monitor_theme_changes
 from popup_url import UrlPopup
 import qdarktheme
 
@@ -35,8 +35,8 @@ class Browser(QMainWindow):
 
         self.shortcuts = Shortcuts(self.browser, UrlPopup)
 
-        theme = get_windows_theme()
-        apply_theme(self, theme)
+        apply_theme(self, get_windows_theme())
+        monitor_theme_changes(self)
 
     def load_config(self):
         try:

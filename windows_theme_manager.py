@@ -1,6 +1,7 @@
 import ctypes as ct
-import winreg  # Pour interagir avec le registre Windows
+import winreg
 from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtCore import QTimer
 
 def get_windows_theme():
     """
@@ -38,10 +39,10 @@ def dark_title_bar(window: QMainWindow):
     set_window_attribute = ct.windll.dwmapi.DwmSetWindowAttribute
 
     hwnd = window.winId()
-    hwnd = int(hwnd)  # Convertir en entier
-    hwnd = ct.c_void_p(hwnd)  # Assurer que hwnd est correctement typé
+    hwnd = int(hwnd) 
+    hwnd = ct.c_void_p(hwnd)  
     
-    value = ct.c_int(2)  # Valeur pour activer le mode sombre
+    value = ct.c_int(2)  
     
     if ct.windll.dwmapi.DwmIsCompositionEnabled(ct.byref(ct.c_int())):
         set_window_attribute(hwnd, DWMWA_USE_IMMERSIVE_DARK_MODE, ct.byref(value), ct.sizeof(value))
@@ -60,10 +61,25 @@ def light_title_bar(window: QMainWindow):
     set_window_attribute = ct.windll.dwmapi.DwmSetWindowAttribute
 
     hwnd = window.winId()
-    hwnd = int(hwnd)  # Convertir en entier
-    hwnd = ct.c_void_p(hwnd)  # Assurer que hwnd est correctement typé
+    hwnd = int(hwnd) 
+    hwnd = ct.c_void_p(hwnd) 
     
-    value = ct.c_int(0)  # Valeur pour désactiver le mode sombre
+    value = ct.c_int(0)
     
     if ct.windll.dwmapi.DwmIsCompositionEnabled(ct.byref(ct.c_int())):
         set_window_attribute(hwnd, DWMWA_USE_IMMERSIVE_DARK_MODE, ct.byref(value), ct.sizeof(value))
+
+def monitor_theme_changes(window: QMainWindow):
+    current_theme = get_windows_theme()
+    apply_theme(window, current_theme)
+    
+    def check_theme_change():
+        nonlocal current_theme
+        new_theme = get_windows_theme()
+        if new_theme != current_theme:
+            current_theme = new_theme
+            apply_theme(window, current_theme)
+
+    timer = QTimer(window)
+    timer.timeout.connect(check_theme_change)
+    timer.start(1000)
