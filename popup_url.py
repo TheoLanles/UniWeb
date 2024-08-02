@@ -2,15 +2,14 @@ from PyQt5.QtWidgets import QDialog, QVBoxLayout, QLineEdit, QPushButton, QLabel
 from PyQt5.QtCore import Qt, QUrl
 from PyQt5.QtGui import QIcon
 import json
-from windows_theme_manager import dark_title_bar, light_title_bar, get_windows_theme, apply_theme
-
+from windows_theme_manager import get_windows_theme, apply_theme
 class UrlPopup(QDialog):
     def __init__(self, browser, parent=None):
         super().__init__(parent)
-        self.browser = browser  # Référence au navigateur
+        self.browser = browser 
         self.setWindowTitle("Edit URL")
         self.setWindowIcon(QIcon('icon/icon.png'))
-        self.setFixedSize(300, 150)  # Taille fixe pour la popup
+        self.setFixedSize(300, 150)
 
         self.setWindowFlags(Qt.WindowTitleHint | Qt.WindowSystemMenuHint)
 
@@ -42,7 +41,6 @@ class UrlPopup(QDialog):
     def save_url(self):
         new_url = self.url_input.text()
         
-        # Sauvegarder l'URL dans le fichier config.json
         try:
             with open('config/config.json', 'r') as file:
                 config = json.load(file)
@@ -53,9 +51,7 @@ class UrlPopup(QDialog):
         
         with open('config/config.json', 'w') as file:
             json.dump(config, file, indent=4)
-        
-        # Recharger la page avec la nouvelle URL
+    
         self.browser.setUrl(QUrl(new_url))
         
-        # Fermer la popup
         self.accept()
