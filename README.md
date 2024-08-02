@@ -1,12 +1,16 @@
 # UniWeb
  
-### Home page :
+### Home page **theme** :
 
-![image](https://github.com/user-attachments/assets/ed2000bf-c142-4381-8647-884af6d1974d)
+![image](https://github.com/user-attachments/assets/062b4d97-6ede-47e4-8e51-936dee9ec4da)
+![image](https://github.com/user-attachments/assets/4404198b-f481-4dab-b88f-2e700ef8f769)
 
-### Settings page :
 
-![image](https://github.com/user-attachments/assets/0bf18274-b483-4f04-ad26-6a82ad809921)
+
+### Settings page **theme** :
+
+![image](https://github.com/user-attachments/assets/30d47ebb-bfb0-4c79-823c-ae99d86c95eb)
+![image](https://github.com/user-attachments/assets/1cbf4537-73e0-4e6a-b45d-1b301fcd6cb2)
 
 ### Shortcuts table :
 
