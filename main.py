@@ -7,11 +7,14 @@ from PyQt5.QtGui import QIcon
 from shortcuts import Shortcuts
 from windows_theme_manager import dark_title_bar, light_title_bar, get_windows_theme, apply_theme
 from popup_url import UrlPopup
+import qdarktheme
 
 class Browser(QMainWindow):
     def __init__(self):
         super().__init__()
         self.browser = QWebEngineView()
+        qdarktheme.setup_theme()
+        qdarktheme.setup_theme("auto")
 
         self.load_config()
         self.browser.setUrl(QUrl(self.url))
