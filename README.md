@@ -12,6 +12,11 @@
 ![image](https://github.com/user-attachments/assets/30d47ebb-bfb0-4c79-823c-ae99d86c95eb)
 ![image](https://github.com/user-attachments/assets/1cbf4537-73e0-4e6a-b45d-1b301fcd6cb2)
 
+### Find page **theme** :
+
+![image](https://github.com/user-attachments/assets/a2751514-6aa9-4410-8224-7f1dbf8f6476)
+![image](https://github.com/user-attachments/assets/e85f916f-3442-46e5-91ce-b63629f3d4ff)
+
 ### Shortcuts table :
 
 | Shortcuts | Description |
