@@ -42,10 +42,10 @@ class Browser(QMainWindow):
                 self.url = config.get('url')
         except FileNotFoundError:
             print("Fichier config.json non trouvé. Utilisation de l'URL par défaut.")
-            self.url = 'https://www.example.com'
+            self.url = 'https://github.com/TheoLanles/UniWeb'
         except json.JSONDecodeError:
             print("Erreur de décodage du fichier config.json. Utilisation de l'URL par défaut.")
-            self.url = 'https://www.example.com'
+            self.url = 'https://github.com/TheoLanles/UniWeb'
 
     def update_title(self):
         self.setWindowTitle(self.browser.page().title())
