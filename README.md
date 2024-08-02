@@ -2,7 +2,7 @@
  
 ### Home page :
 
-![image](https://github.com/user-attachments/assets/b767b385-7ace-443f-a616-6479972979f9)
+![image](https://github.com/user-attachments/assets/a7622aa9-ae21-468c-b8c9-51d8984b86cc)
 
 ### Settings page :
 
